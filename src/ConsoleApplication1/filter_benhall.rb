@@ -9,9 +9,7 @@ class FilterBenHall < PartDefinition
 	  puts "Filtering out Ben Hall"
 	end
 	
-	def get_filtered_out_tweets(tweets)	  
-	  puts tweets
-	  puts tweets.class
+	def get_filtered_out_tweets(tweets)
 	  tweets.select {|t| tweet_allowed(t)}
 	end
 	

@@ -8,7 +8,7 @@ namespace ConsoleApplication1
     [Export(typeof(IFilter))]
     public class DefaultFilter : IFilter
     {
-        public List<Tweet> GetFilteredOutTweets(List<Tweet> tweets)
+        public object GetFilteredOutTweets(List<Tweet> tweets)
         {
             return tweets.Where(TweetAllowed).ToList();
         }

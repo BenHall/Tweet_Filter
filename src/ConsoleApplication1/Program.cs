@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
+using System.Linq;
 using ClassLibrary1;
+using IronRuby.Builtins;
 using Newtonsoft.Json.Linq;
 
 namespace ConsoleApplication1
@@ -40,6 +42,8 @@ namespace ConsoleApplication1
         {
             List<Tweet> tweets = LoadTweets("Tweets.json");
 
+            FilterOutWholeList(tweets);
+
             foreach (Tweet tweet in tweets)
             {
                 if (IsTweetAllowed(tweet))
@@ -47,6 +51,13 @@ namespace ConsoleApplication1
                 else
                     Console.WriteLine("Tweet from @{0} blocked", tweet.User);
             }
+        }
+
+        private void FilterOutWholeList(List<Tweet> tweets)
+        {
+            RubyArray o = (RubyArray) filters[1].GetFilteredOutTweets(tweets);
+            Console.WriteLine(o);
+            Console.WriteLine((o[0] as Tweet).User);
         }
 
         private bool IsTweetAllowed(Tweet tweet)
