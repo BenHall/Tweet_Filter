@@ -12,7 +12,7 @@ class FilterBenHall < PartDefinition
 	def get_filtered_out_tweets(tweets)	  
 	  puts tweets
 	  puts tweets.class
-	  tweets.select {|t| t.user == "Ben_Hall"}
+	  tweets.select {|t| tweet_allowed(t)}
 	end
 	
 	def tweet_allowed(tweet)

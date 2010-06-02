@@ -10,7 +10,7 @@ class FilterRetweets < PartDefinition
 	end
 	
 	def get_filtered_out_tweets(tweets)
-	  tweets.select {|t| t.text.match(/^RT /)}
+	  tweets.select {|t| tweet_allowed(t)}
 	end
 	
 	def tweet_allowed(tweet)
