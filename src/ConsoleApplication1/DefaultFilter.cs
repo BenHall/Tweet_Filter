@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-
+using System.Linq;
 using ClassLibrary1;
 
 namespace ConsoleApplication1
@@ -11,12 +10,12 @@ namespace ConsoleApplication1
     {
         public List<Tweet> GetFilteredOutTweets(List<Tweet> tweets)
         {
-            return new List<Tweet>();
+            return tweets.Where(TweetAllowed).ToList();
         }
 
         public bool TweetAllowed(Tweet tweet)
         {
-            return true;
+            return !string.IsNullOrEmpty(tweet.User) && !string.IsNullOrEmpty(tweet.Text);
         }
     }
 }
